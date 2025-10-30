@@ -23,7 +23,23 @@ export function Header() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
+
+      // Update active nav based on scroll position
+      const sections = ["rooms", "ethos", "experiences", "testimonials"];
+      const currentSection = sections.find((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+
+      if (currentSection) {
+        setActiveNav(currentSection);
+      }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -33,13 +49,36 @@ export function Header() {
     document.documentElement.classList.toggle("dark");
   };
 
+  // Smooth scroll function
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerHeight = 80; // Adjust based on your header height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  // Updated to match your actual component IDs
   const navItems = [
-    "Rooms & Suites",
-    "Dining",
-    "Experiences",
-    "Gallery",
-    "Contact",
+    { name: "Our Ethos", id: "ethos" },
+    { name: "Experiences", id: "experiences" },
+    { name: "Rooms & Suites", id: "rooms" },
+    { name: "Testimonials", id: "testimonials" },
   ];
+
+  const handleNavClick = (itemId: string, event: React.MouseEvent) => {
+    event.preventDefault();
+    setIsOpen(false); // Close mobile menu if open
+    setActiveNav(itemId); // Set active nav
+    scrollToSection(itemId);
+  };
 
   return (
     <>
@@ -110,26 +149,27 @@ export function Header() {
             <nav className="hidden xl:flex items-center space-x-0">
               {navItems.map((item, index) => (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
+                  key={item.id}
+                  href={`#${item.id}`}
                   className="relative px-5 py-4 group"
-                  onMouseEnter={() => setActiveNav(item)}
+                  onMouseEnter={() => setActiveNav(item.id)}
                   onMouseLeave={() => setActiveNav("")}
+                  onClick={(e) => handleNavClick(item.id, e)}
                 >
                   <span
                     className={`relative z-20 text-sm font-light tracking-wider transition-all duration-500 ${
-                      activeNav === item
+                      activeNav === item.id
                         ? "text-amber-700 dark:text-amber-300 transform translate-y-[-2px]"
                         : "text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-300"
                     }`}
                   >
-                    {item}
+                    {item.name}
                   </span>
 
                   {/* Magnetic Underline */}
                   <div
                     className={`absolute bottom-4 left-8 right-8 h-0.5 bg-gradient-to-r from-amber-600 to-amber-400 transform origin-left transition-all duration-700 ${
-                      activeNav === item
+                      activeNav === item.id
                         ? "scale-x-100 opacity-100"
                         : "scale-x-0 opacity-0"
                     }`}
@@ -138,7 +178,7 @@ export function Header() {
                   {/* Floating Background */}
                   <div
                     className={`absolute inset-2 bg-gradient-to-br from-amber-50 to-amber-100/50 dark:from-amber-950/30 dark:to-amber-900/20 rounded-xl border border-amber-200/50 dark:border-amber-800/30 transform transition-all duration-500 ${
-                      activeNav === item
+                      activeNav === item.id
                         ? "scale-100 opacity-100 shadow-lg shadow-amber-500/10"
                         : "scale-90 opacity-0"
                     }`}
@@ -242,14 +282,14 @@ export function Header() {
             <nav className="space-y-3 pt-6 border-t border-amber-200/50 dark:border-amber-800/30">
               {navItems.map((item) => (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
+                  key={item.id}
+                  href={`#${item.id}`}
                   className="block px-6 py-5 text-lg font-light text-slate-700 dark:text-slate-300 hover:text-amber-700 dark:hover:text-amber-300 rounded-2xl transition-all duration-500 border border-transparent hover:border-amber-200 dark:hover:border-amber-800 hover:bg-amber-50 dark:hover:bg-amber-950/30 group"
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleNavClick(item.id, e)}
                 >
                   <div className="flex items-center gap-4 transform group-hover:translate-x-3 transition-transform duration-500">
                     <div className="w-2 h-2 bg-amber-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-150" />
-                    {item}
+                    {item.name}
                   </div>
                 </a>
               ))}

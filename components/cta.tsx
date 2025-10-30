@@ -8,7 +8,10 @@ export function CTA() {
 
   return (
     <>
-      <section className="relative py-24 bg-white dark:bg-slate-900 overflow-hidden transition-colors duration-500">
+      <section
+        id="contact"
+        className="relative py-24 bg-white dark:bg-slate-900 overflow-hidden transition-colors duration-500"
+      >
         {/* Background Elements */}
         <div className="absolute inset-0 bg-gradient-to-br from-amber-50/30 to-transparent dark:from-amber-950/10 pointer-events-none" />
         <div className="absolute top-10 left-10 w-64 h-64 bg-amber-200/20 dark:bg-amber-600/10 rounded-full blur-3xl" />
