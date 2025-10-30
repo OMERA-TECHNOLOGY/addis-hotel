@@ -11,8 +11,8 @@ export const metadata: Metadata = {
   description:
     "Experience Ethiopian heritage and refined luxury at The Addis Hotel",
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
   },
 };
 
