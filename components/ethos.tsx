@@ -1,7 +1,15 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Star, Heart, Users, Palette } from "lucide-react";
+import {
+  Star,
+  Heart,
+  Users,
+  Palette,
+  HeartHandshake,
+  ShieldCheck,
+  Mountain,
+} from "lucide-react";
 
 export function Ethos() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
@@ -9,59 +17,59 @@ export function Ethos() {
 
   const values = [
     {
-      title: "Debo",
-      subtitle: "Ethiopian Hospitality",
+      title: "Yilugnta",
+      subtitle: "Respect and Compassion",
       description:
-        "The ancient Ethiopian tradition of genuine, heartfelt welcome. Every guest is family in our care, embraced with authentic warmth and unparalleled service excellence.",
-      icon: Users,
-      color: "from-amber-500 to-amber-600",
-      features: [
-        "Personalized Welcome",
-        "24/7 Butler Service",
-        "Cultural Immersion",
-        "Family Treatment",
-      ],
-    },
-    {
-      title: "Heritage",
-      subtitle: "Cultural Celebration",
-      description:
-        "Honoring Addis Ababa's rich history as the diplomatic heart of Africa. We preserve and celebrate Ethiopia's magnificent legacy through art, architecture, and experiences.",
-      icon: Star,
+        "We serve every guest with dignity and grace. Yilugnta guides how we listen, respond, and care, creating a space where everyone feels valued and respected.",
+      icon: HeartHandshake,
       color: "from-amber-600 to-amber-700",
       features: [
-        "Historical Artifacts",
-        "Traditional Architecture",
-        "Cultural Events",
-        "Local Partnerships",
+        "Respect for All",
+        "Empathetic Service",
+        "Graceful Conduct",
+        "Calm Communication",
       ],
     },
     {
-      title: "Craftsmanship",
-      subtitle: "Local Artistry",
+      title: "Tiru Sewinet",
+      subtitle: "Integrity in Service",
       description:
-        "Collaborating with Ethiopian artisans to showcase authentic local talent. Every detail reflects the skill and passion of our nation's master craftspeople.",
-      icon: Palette,
+        "We keep our word and act with honesty. Tiru Sewinet means doing what is right, maintaining trust through consistency and ethical service.",
+      icon: ShieldCheck,
+      color: "from-amber-500 to-amber-600",
+      features: [
+        "Honest Interaction",
+        "Transparent Processes",
+        "Trustworthy Service",
+        "Ethical Standards",
+      ],
+    },
+    {
+      title: "Fiker",
+      subtitle: "Love in Hospitality",
+      description:
+        "True hospitality begins with love. Fiker drives how we welcome guests, design experiences, and create comfort with warmth and heart.",
+      icon: Heart,
       color: "from-amber-700 to-amber-800",
       features: [
-        "Artisan Collaborations",
-        "Handcrafted Furnishings",
-        "Local Materials",
-        "Skill Preservation",
+        "Warm Welcome",
+        "Personal Care",
+        "Kind Attention",
+        "Comfort-Driven Service",
       ],
     },
     {
-      title: "Serenity",
-      subtitle: "Mindful Luxury",
+      title: "Tibeb",
+      subtitle: "Excellence through Wisdom",
       description:
-        "A sanctuary designed for reflection, connection, and rejuvenation. Experience tranquility through spaces that harmonize modern comfort with peaceful Ethiopian aesthetics.",
-      icon: Heart,
+        "Every detail matters. Tibeb is the skill and insight behind our work, blending tradition and modern standards to deliver refined experiences.",
+      icon: Mountain,
       color: "from-amber-800 to-amber-900",
       features: [
-        "Peaceful Ambiance",
-        "Wellness Programs",
-        "Tranquil Spaces",
-        "Mindful Service",
+        "Skilled Staff",
+        "Refined Details",
+        "Continuous Learning",
+        "Quality Execution",
       ],
     },
   ];
@@ -103,7 +111,7 @@ export function Ethos() {
             </span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-amber-500 to-amber-600 dark:from-amber-400 dark:to-amber-600 rounded-full mx-auto mb-8 transition-all duration-500" />
-          <p className="text-xl text-slate-700 dark:text-amber-100/80 max-w-3xl mx-auto leading-relaxed font-light transition-colors duration-500">
+          <p className="text-xl text-slate-800 dark:text-amber-100 max-w-3xl mx-auto leading-relaxed font-light transition-colors duration-500">
             The Addis is more than a hotel—it's a celebration of Ethiopian
             culture, hospitality, and the timeless beauty of Addis Ababa. Our
             foundation is built upon principles that have guided Ethiopian
@@ -135,7 +143,7 @@ export function Ethos() {
                 <div className="p-4 bg-gradient-to-br from-amber-500/10 to-amber-600/5 dark:from-amber-500/10 dark:to-amber-600/5 rounded-2xl border border-amber-200/50 dark:border-amber-800/30 group-hover:border-amber-400/50 dark:group-hover:border-amber-600/50 transition-all duration-500 inline-block">
                   <value.icon
                     size={32}
-                    className="text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform duration-500"
+                    className="text-amber-700 dark:text-amber-300 group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
                 {/* Icon Glow */}
@@ -147,11 +155,11 @@ export function Ethos() {
                 {value.title}
               </h3>
 
-              <p className="text-sm font-medium text-amber-600 dark:text-amber-400 mb-4 tracking-wide transition-colors duration-500">
+              <p className="text-sm font-medium text-amber-700 dark:text-amber-300 mb-4 tracking-wide transition-colors duration-500">
                 {value.subtitle}
               </p>
 
-              <p className="text-slate-700 dark:text-amber-100/80 leading-relaxed mb-6 font-light text-sm transition-colors duration-500">
+              <p className="text-slate-800 dark:text-amber-100 leading-relaxed mb-6 font-light text-sm transition-colors duration-500">
                 {value.description}
               </p>
 
@@ -164,7 +172,7 @@ export function Ethos() {
                     style={{ transitionDelay: `${featureIdx * 100 + 200}ms` }}
                   >
                     <div className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
-                    <span className="text-xs text-slate-600 dark:text-amber-200/70 font-light tracking-wide">
+                    <span className="text-xs text-slate-700 dark:text-amber-200 font-light tracking-wide">
                       {feature}
                     </span>
                   </div>
@@ -183,14 +191,14 @@ export function Ethos() {
             <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-6xl text-amber-500/20 dark:text-amber-400/20">
               “
             </div>
-            <blockquote className="text-2xl font-light italic text-slate-700 dark:text-amber-100/80 leading-relaxed transition-colors duration-500">
+            <blockquote className="text-2xl font-light italic text-slate-800 dark:text-amber-100 leading-relaxed transition-colors duration-500">
               In the heart of Addis Ababa, we honor the past while embracing the
               future—creating a sanctuary where every guest becomes part of our
               story.
             </blockquote>
             <div className="mt-8 flex items-center justify-center gap-4">
               <div className="w-8 h-px bg-amber-500/50 dark:bg-amber-400/50"></div>
-              <span className="text-sm text-amber-600 dark:text-amber-400 font-light tracking-widest uppercase">
+              <span className="text-sm text-amber-700 dark:text-amber-300 font-light tracking-widest uppercase">
                 The Addis Promise
               </span>
               <div className="w-8 h-px bg-amber-500/50 dark:bg-amber-400/50"></div>
