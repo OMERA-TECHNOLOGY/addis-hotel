@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Play, Star, Award, Shield } from "lucide-react";
 import { VirtualTourModal } from "./virtual-tour-modal";
+import Image from "next/image";
 
 export function Hero() {
   const [showTour, setShowTour] = useState(false);
@@ -11,20 +12,17 @@ export function Hero() {
 
   const slides = [
     {
-      image:
-        "/ai-prompt:luxury-hotel-lobby-ethiopian-modern-design-marble-wood-gold-accents",
+      image: "/hotel-room-with-ethiopian-geometric-patterns-and-w.jpg",
       title: "Grand Lobby",
       description: "Where heritage meets contemporary elegance",
     },
     {
-      image:
-        "/ai-prompt:luxury-hotel-suite-ethiopian-art-king-bed-panoramic-city-views",
+      image: "/luxury-hotel-suite-inspired-by-ethiopian-design-wi.jpg",
       title: "Presidential Suite",
       description: "Unparalleled comfort with breathtaking views",
     },
     {
-      image:
-        "/ai-prompt:fine-dining-restaurant-ethiopian-cuisine-luxury-ambiance",
+      image: "/luxury-penthouse-suite-with-panoramic-city-views-a.jpg",
       title: "Signature Dining",
       description: "Culinary excellence inspired by ancient traditions",
     },
@@ -44,7 +42,7 @@ export function Hero() {
         className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-slate-900 transition-colors duration-500"
       >
         {/* Light/Dark Mode Background Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-50/80 via-white to-amber-100/60 dark:from-amber-900/20 dark:via-slate-900 dark:to-amber-800/10 transition-all duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-50/80 via-white to-amber-100/60 dark:from-amber-900/25 dark:via-slate-900 dark:to-amber-800/10 transition-all duration-500" />
 
         {/* Floating Particles - Different colors for light/dark */}
         <div className="absolute inset-0 opacity-30 dark:opacity-30 transition-opacity duration-500">
@@ -161,22 +159,25 @@ export function Hero() {
 
             {/* Premium Image Slider */}
             <div className="relative h-[500px] lg:h-[600px] rounded-3xl overflow-hidden group bg-slate-100 dark:bg-slate-800 transition-colors duration-500">
-              {/* Main Image */}
+              {/* Main Image Container */}
               <div className="absolute inset-0 transition-opacity duration-1000">
-                <div className="w-full h-full bg-gradient-to-br from-amber-400/10 to-amber-600/5 dark:from-amber-400/20 dark:to-amber-600/10 transition-all duration-500" />
-                <div className="absolute inset-0 bg-slate-200/30 dark:bg-slate-800/30 transition-colors duration-500" />
-
-                {/* AI Image Placeholder */}
-                <div className="w-full h-full flex items-center justify-center text-slate-400 dark:text-amber-200/50 transition-colors duration-500">
-                  <div className="text-center">
-                    <div className="text-sm font-light tracking-widest mb-2 transition-colors duration-500">
-                      AI IMAGE: {slides[currentSlide].title}
-                    </div>
-                    <div className="text-xs transition-colors duration-500">
-                      {slides[currentSlide].description}
-                    </div>
+                {/* Actual Images */}
+                {slides.map((slide, index) => (
+                  <div
+                    key={index}
+                    className={`absolute inset-0 transition-opacity duration-1000 ${
+                      index === currentSlide ? "opacity-100" : "opacity-0"
+                    }`}
+                  >
+                    <img
+                      src={slide.image}
+                      alt={slide.title}
+                      className="w-full h-full object-cover"
+                    />
+                    {/* Overlay Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 to-transparent opacity-50 group-hover:opacity-60 transition-opacity duration-500" />
                   </div>
-                </div>
+                ))}
               </div>
 
               {/* Slide Info */}
@@ -208,13 +209,6 @@ export function Hero() {
               <div className="absolute -top-4 -right-4 w-32 h-32 bg-amber-400/10 dark:bg-amber-400/10 rounded-full blur-3xl transition-all duration-500" />
               <div className="absolute -bottom-4 -left-4 w-48 h-48 bg-amber-600/10 dark:bg-amber-600/10 rounded-full blur-3xl transition-all duration-500" />
             </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <div className="w-6 h-10 border-2 border-amber-500/50 dark:border-amber-400/50 rounded-full flex justify-center transition-colors duration-500">
-            <div className="w-1 h-3 bg-amber-500 dark:bg-amber-400 rounded-full mt-2 animate-bounce transition-colors duration-500" />
           </div>
         </div>
       </section>
